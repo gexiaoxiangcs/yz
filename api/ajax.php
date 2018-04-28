@@ -9,7 +9,6 @@
 
 include '../init.php';
 include 'login.class.php';
-include 'common.class.php';
 $ac = htmlspecialchars($_GET['ac'],ENT_QUOTES);
 switch($ac){
     case 'getopenid':
