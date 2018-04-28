@@ -13,6 +13,6 @@ class Login extends Common {
         $appid = APPID;
         $appsecret = APPSECRET;
         $url = "https://api.weixin.qq.com/sns/jscode2session?appid=$appid&secret=$appsecret&js_code=$code&grant_type=authorization_code";
-        return $this->curl_get($url);
+         exit($this->curl_get($url));
     }
 }
