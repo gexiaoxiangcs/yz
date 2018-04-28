@@ -8,8 +8,7 @@
  */
 
 class Common {
-
-    protected function curl_get($url, $data = array(), $timeout = 3) {
+    public  function curl_get($url, $data = array(), $timeout = 3) {
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_HEADER, 0);
@@ -23,17 +22,17 @@ class Common {
         return $content;
     }
 
-    protected function htmlencoder($code) {
+    public function htmlencoder($code) {
         return htmlspecialchars($code,ENT_QUOTES);
     }
 
-    protected  function outPutJson($arr){
+    public  function outPutJson($arr){
         $arr = $this->_convertOutput($arr);
         echo json_encode($arr);
         exit;
     }
 
-    private function _convertOutput($data){
+    public function _convertOutput($data){
         if(is_string($data)){
 
         }
