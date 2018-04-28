@@ -12,7 +12,7 @@ class Login extends Common {
         $code = $this->htmlencoder($_GET['code']);
         $appid = APPID;
         $appsecret = APPSECRET;
-        $url = "https://api.weixin.qq.com/sns/jscode2session?appid=$appid&secret=$appsecret&js_code='+ code +'&grant_type=authorization_code";
+        $url = "https://api.weixin.qq.com/sns/jscode2session?appid=$appid&secret=$appsecret&js_code=$code&grant_type=authorization_code";
         $this->outPutJson(array(
             'result' => 200,
             'data' => $this->curl_get($url),
