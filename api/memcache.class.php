@@ -8,6 +8,7 @@
  */
 
 class Mem{
+    private $memcon = '';
     public  function memcacheSet($data, $key, $time){
         $this->memcacheInit();
         $key = $this->_k($key);
@@ -49,6 +50,6 @@ class Mem{
     }
 
     private function _k($k){
-        return md5($this->memprev . $k);
+        return md5($k);
     }
 }
