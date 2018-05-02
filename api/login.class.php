@@ -17,7 +17,7 @@ class Login extends Common {
         $url = "https://api.weixin.qq.com/sns/jscode2session?appid=$appid&secret=$appsecret&js_code=$code&grant_type=authorization_code";
         $result = $this->curl_get($url);
         $arr = json_decode($result,true);
-        if(!$arr['errcode']) {
+        if($arr['sessionid']) {
             $key = $this->trd_session(64);
             $mem = new Mem();
             $mem->memcacheSet($result,$key,600);
