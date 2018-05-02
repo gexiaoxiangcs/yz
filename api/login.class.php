@@ -9,6 +9,7 @@
 include 'common.class.php';
 include 'memcache.class.php';
 class Login extends Common {
+    private $sec_key = '582a60853355425dde55e0b469c6cc9e';
     public function getOpenid() {
         $code = $this->htmlencoder($_GET['code']);
         $appid = APPID;
@@ -18,14 +19,18 @@ class Login extends Common {
         $arr = json_decode($result,true);
         if(!$arr['errcode']) {
             $key = $this->trd_session(64);
-            $mem = new Memcache();
+            $mem = new Mem();
             $mem->memcacheSet($result,$key,600);
             $this->outPutJson(array(
                 'result' => 200,
-                'sessionid' => ,
+                'sessionid' => $key,
+                'sign' => $this->addSign($arr['openid'],$arr['session_key']),
             ));
         } else {
-
+            $this->outPutJson(array(
+                'result' => 400,
+                'error' => $arr['errcode'],
+            ));
         }
 
         return false;
@@ -44,5 +49,9 @@ class Login extends Common {
         $result = base64_encode($result);
         $result = strtr($result, '+/', '-_');
         return substr($result, 0, $len);
+    }
+
+    private function addSign($openid,$session_key) {
+        return md5(md5($openid . $session_key . $this->sec_key));
     }
 }

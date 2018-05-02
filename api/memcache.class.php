@@ -43,7 +43,6 @@ class Mem{
 
     private function memcacheInit(){
         if(!$this->memcon){
-
             $this->memcon = new Memcache();
             $this->memcon->connect(MEM_HOST, MEM_PORT);
         }

@@ -10,3 +10,5 @@
 define('APPID', 'wxb9e0e8550b0bb913');
 define('APPSECRET', 'fe29244719fb48bed0daa6b5909bc92f');
 
+define('MEM_HOST'    ,'localhost');
+define('MEM_PORT'    ,11211);
